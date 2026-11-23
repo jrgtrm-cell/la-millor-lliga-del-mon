@@ -1,0 +1,25 @@
+LA MILLOR LLIGA DEL MÓN — PAQUET V2 (PREPARACIÓ)
+
+Aquest paquet incorpora la interfície de confirmació dels entrenadors (Confirmar / No confirmar), els codis privats per equip, l'administració, els resultats i la publicació de jornades. Els codis es guarden com a hash a D1.
+
+IMPORTANT: és un paquet de codi per desplegar, no un servei ja publicat ni verificat al teu compte. Cal crear Pages, D1 i Worker i connectar la URL de l'API. No pugis encara el contingut fins que fem els passos en ordre i comprovem els noms/URLs.
+
+1. Pages: pujar NOMÉS la carpeta public. Cloudflare Pages desplega els fitxers estàtics.
+2. D1: crear una base de dades anomenada lliga-talent-db i executar schema.sql.
+3. Worker: crear lliga-talent-api, enganxar worker.js i desplegar.
+4. Worker > Settings > Bindings: afegir D1 binding amb variable DB i seleccionar lliga-talent-db.
+5. Worker > Settings > Variables and Secrets: afegir secret ADMIN_PASSWORD amb una contrasenya forta que no compartiràs al xat.
+6. Connexió: a public/app.js, canviar const API="/api" per la URL real del Worker acabada en /api, o configurar un proxy/ruta. Ho farem junts després de crear Worker.
+7. Mantén el compte al pla Free i no afegeixis targeta. Els límits i les condicions gratuïtes poden canviar.
+
+Flux d'entrenadors:
+- L'administrador crea cada partit i assigna un codi privat diferent al club local i al visitant.
+- Cada entrenador entra a la pestanya Proposta entrenadors amb el seu codi.
+- Només veu partits on el seu codi coincideix i pot respondre Confirmar / No confirmar.
+- L'administrador veu les respostes i pot publicar la jornada encara que hi hagi pendents o negatives.
+
+Limitacions:
+- No incorpora invitacions automàtiques per WhatsApp/correu: els codis s'han de compartir privadament amb cada entrenador.
+- No inclou encara una eina d'edició d'horaris després de crear un partit; per ara caldrà corregir dades a través de D1 o afegir aquesta pantalla en una iteració.
+- No s'han carregat equips, classificacions inicials ni pavellons reals. Cal introduir dades reals confirmades.
+- No s'ha desplegat ni provat dins del teu compte Cloudflare. És necessari fer una prova de configuració abans d'usar-ho en competició.
